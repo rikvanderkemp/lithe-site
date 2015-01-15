@@ -19,7 +19,7 @@ body: |
     python --version
     ~~~~
 
-    If this results in __2.x__ check if Python3 is installed seperatly:
+    If this results in __2.x__ check if Python3 is installed separately:
 
     ~~~~.bash
     python3 --version
@@ -31,7 +31,7 @@ body: |
 
     Make sure Virtualenv is installed. Take a look [here](https://virtualenv.readthedocs.org/en/latest/virtualenv.html#installation) for an installation guide of Virtualenv and come back when finished. We will need this to fire up lithe with the correct version of Python.
 
-    # Project quickstart <small>easy as pie</small>
+    # Project quick-start <small>easy as pie</small>
 
     Once you have met the prerequisites you are ready to create your first project.
 
@@ -48,7 +48,7 @@ body: |
     cd projects/lithe_tutorial
     ~~~~
 
-    Once you are done, just follow the rest of the quickstart guide, you will be fine.
+    Once you are done, just follow the rest of the quick-start guide, you will be fine.
 
     ## Project preparation <small>whoop, whoop</small>
     Create a virtualenv for your new project
@@ -91,7 +91,7 @@ body: |
 
     ## Finish installation <small>get going fast</small> ##
 
-    lithe comes with a quickstart setup script. Use this when starting a new site you will be up and running in no-time.
+    lithe comes with a quick-start setup script. Use this when starting a new site you will be up and running in no-time.
 
     From you app folder run
 

@@ -78,7 +78,7 @@ body: |
 
     Any file created inside this folder will automatically appear in the file listing at the root of your localhost address. 
 
-    These files can contain plain HTML or [Jinja2](http://jinja.pocoo.org/) fueled templates. There is no need for any special configuration it is all supported out of the box.
+    These files can contain plain HTML or [Jinja2](http://jinja.pocoo.org/) fuelled templates. There is no need for any special configuration it is all supported out of the box.
 
     Please note that lithe does something special with subfolders so keep your file structure simple.    
 
@@ -116,7 +116,7 @@ body: |
 
     This underscore file can not be accessed 'as is' via localhost. So at this moment the file does not appear in the file list when refreshing your browser.
 
-    These files are feeded with data files and within your template file you can use the variable data to read information and render them in your browser.
+    These files are fed with data files and within your template file you can use the variable data to read information and render them in your browser.
 
     ## Data files ##
 
@@ -251,7 +251,7 @@ body: |
 
     lithe comes with a handy build script to create static files / content which you can ssh/sftp to your server.
 
-    The way this works is that the build script will analyze all available links (also the reusable templates), collect the static folder and put all of this inside the created 'build' folder.
+    The way this works is that the build script will analyse all available links (also the reusable templates), collect the static folder and put all of this inside the created 'build' folder.
 
     From your project folder (where lithe.sh) also exists. Run:
 

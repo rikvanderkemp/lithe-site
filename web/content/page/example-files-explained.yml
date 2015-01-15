@@ -41,7 +41,7 @@ body: |
         </p>
     </div>
 
-    So what about _article.html? Well open it up in your favorite editor. 
+    So what about _article.html? Well open it up in your favourite editor. 
 
     You will see that it is almost similar to the hello.html file, with one difference, there is a __data__ variable used.
 
@@ -70,7 +70,7 @@ body: |
         <p>A simple hello from hello-world article</p>
     ~~~
 
-    Everytime you add a file to the directory __article__ it will appear in the directory listing. Go ahead and create a new YAML file like with the following contents:
+    Every time you add a file to the directory __article__ it will appear in the directory listing. Go ahead and create a new YAML file like with the following contents:
 
     ~~~~.yaml
     author: Your name
@@ -89,4 +89,4 @@ body: |
         </p>
     </div>
 
-    This is in a nuttshell lithe. There is more possible such as using Markdown, please take a look at [the tutorial page](/page/tutorial.html) for a more detailed overview of lithe.
+    This is in a nutshell lithe. There is more possible such as using Markdown, please take a look at [the tutorial page](/page/tutorial.html) for a more detailed overview of lithe.
