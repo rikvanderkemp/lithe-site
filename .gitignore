@@ -4,3 +4,4 @@ lithe
 lithe.sh
 web/node_modules/
 web/static/css/*
+run.lock

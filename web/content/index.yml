@@ -1,162 +1,36 @@
-body: |    
-    [TOC]
+menu:
+    -
+        title: Absolute beginners guide
+        description: |
+            If you are unfamiliar with Virtualenv / Python or feel uncomfortable using the command line.
+        link: '/page/beginners-guide.html'
+    -
+        title: Tutorial / Reference
+        description: |
+            You are comfortable with the command line and have Python / Virutalenv setup.
+        link: '/page/tutorial.html'
+    -
+        title: Example files explained
+        description: |
+            Learn lithe by studying the example files.
+        link: '/page/example-files-explained.html'
+body: |
+    # What is lithe? #
 
-    # Introduction to lithe #
-    
-    <div class="bs-callout bs-callout-info">
-        <strong>Experts and fellow geeks</strong>
-        <p>If you know about Virtualenv, creating folders and git cloning. Or even when you just want to start developing. I would suggest moving straight to my <a href="tutorial.html">tutorial</a> for a more compact guide and to dive straight in.
-        </p>
-    </div>
+    > moving in an easy and graceful way [^1]
 
-    Just like many of you I like tinkering with web stuff. Now, on a daily basis I develop medium to large websites at [Zicht Online](http://zicht.nl). At home I like to develop and prototype my own ideas. 
-    Thus came the idea of building my own little web tinkering tool to rapidly play with HTML and develop and deploy static HTML sites. 
+    Simply put, a super fast and flexible framework for rapid static HTML site development. 
 
-    So why static? Well basically; Keep it simple, stupid. I really do not need bloated CMS systems or complicated/overkill frameworks to deliver my message, or to just play arround with web stuff. 
+    It is not always necessary to conjure up a full fledged CMS system like Wordpress or Drupal just to get the message out. You end up with a lot of excessive stuff you most likely are not going to use.
 
-    In short, when you need to build a simple website or blog of some sorts, lithe can help you achieve your goals fast.
+    Personally I always find myself in a situation were I just need to quickly build a website or prototype something, and it is at that point were it would be nice that what I've build is easy to deploy to a web server.
 
-    I believe this little framework will suit a lot of people, looking to have a way to build websites in a rapid pace. Getting to grips with lithe is easy. You do not need to have loads of tech knowledge. Obviously, you will need to learn some stuff. But once you get started, you will hopefully see a lot of benefits of using this tool.
+    Lithe provides a way to create simple static websites that are easy to build, flexible and easy to deploy. 
 
-    As I strongly believe in this tool, I am actively improving and developing lithe. I do this while creating websites such as these. Using the tool and improving / extending it.
-    
+    Although it all sounds basic lithe supports some awesome features.
 
-    Anyway, hope you enjoy it. On with the show.
+    * HTML markup can be done using the powerfull [Jinja](http://jinja.pocoo.org) templating engine. There is no need for any configuration this is supported out-of-the-box.
+    * You can build [re-usable templates](/page/tutorial.html#re-usable-templates) and feed data via YAML files. This allows you to quickly add pages to your site which use the same templates. This is how this website is build. Checkout the source at [github](https://github.com/rikvanderkemp/lithe-site)
+    * Your [data files](/page/tutorial.html#data-files) can use the widely acclaimed [Markdown](/page/tutorial.html#markdown) language NO html knowledge needed in your content.
 
-    # Assumptions <small>prevent from becoming insane</small>
-
-    * You are running using OSX or Linux
-    * You know about terminals or shell 
-    * You are willing to learn!
-
-    # Installation <small>hardest part, don't give up</small>
-
-    ## Prerequisites <small>yes, that is all you need</small> ##
-
-    ### Python 3 ###
-
-    You will need to have Python 3 installed on your system. To check which version you are running type the following in your terminal:
-
-    ~~~~.bash
-    python --version
-    ~~~~
-
-    If this results in __2.x__ check if Python3 is installed seperatly:
-
-    ~~~~.bash
-    python3 --version
-    ~~~~
-
-    If this does not yield any results check the [Python download page](https://www.bash.org/downloads/) for a proper installation package.
-
-    ### Virtualenv ###
-
-    Make sure Virtualenv is installed. Take a look [here](https://virtualenv.readthedocs.org/en/latest/virtualenv.html#installation) for an installation guide of Virtualenv and come back when finished. We will need this to fire up lithe with the correct version of Python.
-
-    # Project quickstart <small>easy as pie</small>
-
-    Once you have met the prerequisites you are ready to create your first project.
-
-    Choose a location on your system to store your projects in. I would suggest in a folder called projects :). I assume you are in a terminal within this folder.
-
-    If you are completely new I would suggest creating a projects folder and add a subfolder called something like lithe_tutorial:
-
-    ~~~~.bash
-    # go to you home directory
-    cd ~ 
-    # If not, already exists, create a projects folder and the tutorial folder
-    mkdir -p projects/lithe_tutorial
-    # Navigate to this folder
-    cd projects/lithe_tutorial
-    ~~~~
-
-    Once you are done, just follow the rest of the quickstart guide, you will be fine.
-
-    ## Project preparation <small>whoop, whoop</small>
-    Create a virtualenv for your new project
-
-    ~~~~.bash
-    virtualenv -p python3 example_env
-    ~~~~
-
-    Activate your environment using:
-        
-    ~~~~.bash
-    source example_env/bin/activate
-    ~~~~
-
-    <div class="bs-callout bs-callout-danger4">
-        If you restart a terminal or your system you will always have to reactivate the environment you have created with virtualenv before running ./lithe.sh
-    </div>
-
-    Create a folder to hold your app project and navigate to this folder e.g.
-
-    ~~~~.bash
-    mkdir lithe_site
-    ~~~~
-
-    Change directory to your freshly created project folder [eg lithe_site and clone lithe to this folder using:
-
-    ~~~~.bash
-    cd lithe_site
-    git clone https://github.com/rikvanderkemp/lithe
-    ~~~~
-        
-    Install requirements by running
-
-    ~~~~.bash
-    pip install -r lithe/requirements.txt
-    ~~~~
-        
-    This will install all requirements needed to run lithe.
-
-
-    ## Finish installation <small>get going fast</small> ##
-
-    lithe comes with a quickstart setup script. Use this when starting a new site you will be up and running in no-time.
-
-    From you app folder run
-
-    ~~~~.bash
-    python lithe/setup.py
-    ~~~~
-    
-    It will make sure you have everything to get going and all is configured correctly.
-
-    ## Go, go, go <small>x8</small> ##
-
-    So all should be setup, it is time to run lithe for the first time. Start lithe using:
-
-    ~~~~.bash
-    ./lithe.sh start
-    ~~~~
-
-    You will see something similar to:
-
-    ~~~~.bash
-    Running lithe on port 8000
-    All tasks run in the background, press enter if you did not return to your cli
-    ~~~~
-
-    Point your browser to [localhost:8000](http://localhost:8000). You will see the default directory listing of examples. Click on [hello](http://localhost:8000/hello) to see an example page.
-
-    To stop or restart lithe
-
-    ~~~~.bash 
-    ./lithe.sh stop
-    ~~~~
-
-    ~~~~.bash 
-    ./lithe.sh restart
-    ~~~~
-
-    # What is next? <small>tutorial</small> #
-
-    To learn how to develop with lithe I would suggest clicking through to my [little lithe tutorial](tutorial.html)
-
-    # Side notes and disclaimers #
-
-    * This is for obvious reasons __not__ for production usage. Although the build HTML files can safely be uploaded to your web server.
-    * It is meant to be simple and not complicated, function over form, KISS and all those fancy terms
-    * I have no intention right now to create python modules and integrations with PIP, if you would like to contribute that would be awesome.
-    * There is a slight chance that using this system causes blackholes and cracks in time, do not blame me.
+    [^1]: According to [Merriam Webster](http://www.merriam-webster.com/dictionary/lithe)

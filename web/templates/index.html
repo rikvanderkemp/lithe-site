@@ -3,14 +3,26 @@
 
 {% block content %}
     <div class="row">
+        <div class="col-md-12">
+            <h1>lithe <small>build by mief.nl{% block home %}{% endblock %}</small></h1>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-md-6">
             {{ data.body | markdown }}
         </div>
 
         <div class="col-md-6">
-            <div class="toc-fixed" style="position: fixed; top: 10px;">
-                <h1>lithe <small>build by mief.nl</small></h1>
-            </div>
+            <h2>Quick jump to</h2>
+            <ul>
+                {% for p in data.menu %}
+                <li>
+                    <a href="{{ p.link }}">{{ p.title }}</a>
+                        {{ p.description |  markdown }}
+                </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>   
 {% endblock %}

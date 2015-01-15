@@ -1,0 +1,92 @@
+body: |
+    ## The example files ##
+
+    After you have installed lithe in your project a web folder is created. The structure should look similar to this:
+
+    ~~~~.bash
+    web/
+        templates/ # Contains the actual HTML files
+        content/   # Contains data files in the YAML format
+        static/    # Might contain CSS, JS and all other static content
+    ~~~~
+
+    Take a look at [localhost:8000](http://localhost:8000). You will see the following links:
+
+    ~~~~.bash
+    hello
+    article/hello-world
+    ~~~~
+
+    The links map to the directory files:
+
+    ~~~~.bash
+    web/
+        templates/
+            index.html
+            _article.html
+    ~~~~
+
+    I'll tell about the _ (underscore) file in a minute. Open up index.html first and examine its contents.
+
+    You see that is a regular HTML file, with one differences, it uses [Jinja2](http://jinja.pocoo.org/) for its template engine. This makes it easy to use HTML snippets more then once or use stuff like loops etc. 
+
+
+    <div class="bs-callout bs-callout-info">
+        <p>
+            Jinja2 is an added benefit of using lithe and highly recommend it. It is, however, <strong>not</strong> a requirement. You can still use plain HTML too.
+        </p>
+
+        <p>
+            In the 'hello' example you see that it uses a main layout file, this file is again used in _article.
+        </p>
+    </div>
+
+    So what about _article.html? Well open it up in your favorite editor. 
+
+    You will see that it is almost similar to the hello.html file, with one difference, there is a __data__ variable used.
+
+    ~~~.jinja2
+    <h1>{{ data.title }}</h1>
+
+    {{ data.body }}
+    ~~~
+
+    This data is injected from the content directory.
+
+    ~~~~.bash
+    web/
+        content/
+            article/
+                hello-world.yml
+    ~~~~
+
+    The __article__ folder is mapped to the __ _article.html__ file and the data that is provided to this template comes from the content of __hello-world.yml__ which is a YAML file.
+
+
+    ~~~.yaml
+    author: Rik van der Kemp
+    title: Hello World!
+    body: |
+        <p>A simple hello from hello-world article</p>
+    ~~~
+
+    Everytime you add a file to the directory __article__ it will appear in the directory listing. Go ahead and create a new YAML file like with the following contents:
+
+    ~~~~.yaml
+    author: Your name
+    title: Hello you!
+    body: |
+        <p>Alright, it is that easy!</p>
+    ~~~~
+
+    Refresh your browser at [localhost:8000](http://localhost:8000) and you will see your new file appear. When following the new link you will see your new title and body text appear.
+
+    Using these _ (underscore) templates you can quickly add content while reusing templates.
+
+    <div class="bs-callout bs-callout-info">
+        <p>
+            <strong>Any</strong> template can use data (yml) files. If you add a index.yml under web/content then this data will be available in the web/templates/index.html file.
+        </p>
+    </div>
+
+    This is in a nuttshell lithe. There is more possible such as using Markdown, please take a look at [the tutorial page](/page/tutorial.html) for a more detailed overview of lithe.
