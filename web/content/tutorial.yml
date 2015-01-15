@@ -1,0 +1,392 @@
+body: |
+
+    <div class="bs-callout bs-callout-danger">
+        <p>This document is under heavy construction. Grammar and spelling mistakes might appear.</p>
+
+        <p>
+            If you find mistakes or have other <strong>positive</strong> feedback, drop me a line at rik[at]mief[dot]nl
+        </p>
+    </div>
+
+    [TOC]
+
+    # Setting up your environment #
+
+    Please make sure you have Python 3 and Virtualenv installed. Create a Python 3 environment and a folder to hold our project in. 
+
+    # Get lithe #
+
+    In your project folder clone lithe from github:
+
+    ~~~~.bash
+    git clone https://github.com/rikvanderkemp/lithe
+    ~~~~
+
+    Afterwards get all requirements by running:
+
+    ~~~~.bash
+    pip install -r lithe/requirements.txt
+    ~~~~
+
+    The final step is to install all helper files and start scripts by running the lithe setup script. 
+
+    ~~~~.bash
+    python lithe/setup.py
+    ~~~~
+
+    ## Starting / Stopping ##
+
+    The setup script will symlink the control script for lithe to your project folder. You can start, stop or restart lithe using this script.
+
+    ~~~~.bash
+    ./lithe.sh start|stop|restart
+    ~~~~
+
+    The control script runs all necessary tasks in the background and will keep a reference to these tasks in a temporary file called __run.lock__
+
+    Do not remove this file yourself as it will not kill the lithe process.
+
+    If you have done this or get the message that port 8000 is already in use then that means there still is a lithe process running in the background. To find and kill this process:
+
+    ~~~~.bash
+    ps aux | grep 'python lithe/main.py'
+    ~~~~
+
+    Which will output something similar.
+
+    ~~~~.bash
+    user  1933  ....... grep python lithe/main.py
+    user  1509  ....... python lithe/main.py
+    ~~~~    
+
+    In this case process __1509__ is the one you should kill.
+
+    ~~~~.bash
+    kill 1509
+    ~~~~
+
+    ## The example files ##
+
+    First take a look at the created web folder.
+
+    ~~~~.bash
+    web/
+        templates/ # Contains the actual HTML files
+        content/   # Contains data files in the YAML format
+        static/    # Might contain CSS, JS and all other static content
+    ~~~~
+
+    Take a look at [localhost:8000](http://localhost:8000). You will see the following links:
+
+    ~~~~.bash
+    hello
+    article/hello-world
+    ~~~~
+
+    The links map to the directory files:
+
+    ~~~~.bash
+    web/
+        templates/
+            index.html
+            _article.html
+    ~~~~
+
+    I'll tell about the _ (underscore) file in a minute. Open up index.html first and examine its contents.
+
+    You see that is a regular HTML file, with one differences, it uses [Jinja2](http://jinja.pocoo.org/) for its template engine. This makes it easy to use HTML snippets more then once or use stuff like loops etc. 
+
+
+    <div class="bs-callout bs-callout-info">
+        <p>
+            Jinja2 is an added benefit of using lithe and highly recommend it. It is, however, <strong>not</strong> a requirement. You can still use plain HTML too.
+        </p>
+
+        <p>
+            In the 'hello' example you see that it uses a main layout file, this file is again used in _article.
+        </p>
+    </div>
+
+    So what about _article.html? Well open it up in your favorite editor. 
+
+    You will see that it is almost similar to the hello.html file, with one difference, there is a __data__ variable used.
+
+    ~~~.jinja2
+    <h1>{{ data.title }}</h1>
+
+    {{ data.body }}
+    ~~~
+
+    This data is injected from the content directory.
+
+    ~~~~.bash
+    web/
+        content/
+            article/
+                hello-world.yml
+    ~~~~
+
+    The __article__ folder is mapped to the __ _article.html__ file and the data that is provided to this template comes from the content of __hello-world.yml__ which is a YAML file.
+
+
+    ~~~.yaml
+    author: Rik van der Kemp
+    title: Hello World!
+    body: |
+        <p>A simple hello from hello-world article</p>
+    ~~~
+
+    Everytime you add a file to the directory __article__ it will appear in the directory listing. Go ahead and create a new YAML file like with the following contents:
+
+    ~~~~.yaml
+    author: Your name
+    title: Hello you!
+    body: |
+        <p>Alright, it is that easy!</p>
+    ~~~~
+
+    Refresh your browser at [localhost:8000](http://localhost:8000) and you will see your new file appear. When following the new link you will see your new title and body text appear.
+
+    Using these _ (underscore) templates you can quickly add content while reusing templates.
+
+    <div class="bs-callout bs-callout-info">
+        <p>
+            <strong>Any</strong> template can use data (yml) files. If you add a index.yml under web/content then this data will be available in the web/templates/index.html file.
+        </p>
+    </div>
+
+    This is in a nuttshell lithe. The following chapters serve as a reference and might contain more detailed information.
+
+    # Basic development #
+
+    The most basic way of developing with lithe is to use static HTML files these can be placed in:
+
+    ~~~~.python
+    web/
+        templates/
+    ~~~~
+
+    Any file created inside this folder will automatically appear in the file listing at the root of your localhost address. 
+
+    These files can contain plain HTML or [Jinja2](http://jinja.pocoo.org/) fueled templates. There is no need for any special configuration it is all supported out of the box.
+
+    Please note that lithe does something special with subfolders so keep your file structure simple.    
+
+    # Assets #
+
+    Images, CSS, javascript etc. Can should be placed inside:
+
+    ~~~~.bash
+    web/
+        static/
+    ~~~~
+
+    Your templates can access these files as you would probably guess.
+
+    ~~~~.html
+    <script src="/static/js/my.js"></script>
+    ~~~~
+
+    # Re-usable templates #
+
+    With lithe you can build simple static websites. Even though these websites are simple, chances are that you want to re-use templates. Think of blog posts or news pages. 
+
+    Building re-usable templates you can use subfolders to indicate templates and use data files for input. Lets examine these.
+
+
+    ## Underscore template ##
+
+    You start of by defining a re-useable template by creating a so called 'underscore' template. You do this within your templates folder.
+
+    ~~~~.bash
+    web/
+        templates/
+            _post.html
+    ~~~~
+
+    This underscore file can not be accessed 'as is' via localhost. So at this moment the file does not appear in the file list when refreshing your browser.
+
+    These files are feeded with data files and within your template file you can use the variable data to read information and render them in your browser.
+
+    ## Data files ##
+
+    To use underscore files you will need to feed them with data. You will to create some content in the __web/content__ folder.
+
+    Start off by indicating that you want to feed a particular template. Lets say you want to feed the template __ post.html __ with data. Create a subfolder called 'post':
+
+    ~~~~.bash
+    web/
+        content/
+            post/ # Every file in this folder 
+                  # will use the _post template
+    ~~~~
+
+    Now you should create a __.yml__ file within this subfolder. 
+
+    ~~~~.bash
+    web/
+        content/
+            post/
+                my-blog-post.yml
+    ~~~~    
+
+    These are YAML files. If your are unfamiliar with YAML you can get a quick example at [yaml.org](http://www.yaml.org/start.html)
+
+    An example data file could look like this:
+
+    ~~~~.yaml
+    author: B. Bob
+    title: Why I use lithe
+    body: |
+        <p>Because of reasons</p>
+
+    ~~~~
+
+    To render this data you can use a special Jinja2 template variable __data__. Your __ _post.html __ template could contain the following code:
+
+    ~~~~.jinja2
+    <h1>{{ data.title }}</h1>
+    <em>{{ data.author }}</em>
+
+    {{ data.body }}
+    ~~~~
+
+    The variable tags will be replace with whatever is in your YAML file. As you will be building these templates your self, you can choose any key you see fit.
+
+    <div class="bs-callout bs-callout-info">
+        <p><strong>Tip:</strong> Keep your YAML keys simple and short. eg. author or summary</p>
+
+        <p><strong>Tip:</strong> Do not use spaces in your keys instead use underscores</p>
+        <p>
+            <strong>Bad</strong> blog author:
+        </p>
+
+        <p>
+            <strong>Good</strong> blog_author:
+        </p>
+    </div>
+    
+    <div class="bs-callout bs-callout-danger">
+        <p><strong>
+            The data file names are also your web urls. Do not use spaces or special characters, use dashes (-) instead.
+        </strong></p>
+    </div>
+
+    ## Markdown ##
+
+    I personally dislike typing HTML in my YAML data files, it is tiresome and not fool proof. I made sure that lithe out-of-the-box supports [Markdown](http://daringfireball.net/projects/markdown/).
+
+    The changes you will have to make are minimal. Just replace the data file content to markdown.
+
+
+    __before__
+
+    ~~~~.yaml
+    author: B. Bob
+    title: Why I use lithe
+    body: |
+        <p>Because of reasons.</p>
+        
+        <p>
+        Or more reasons. <a href="http://lithe.mief.nl">lithe</a>
+        </p>
+    ~~~~
+
+    __after__
+       
+    ~~~~.yaml
+    author: B. Bob
+    title: Why I use lithe
+    body: |
+        Because of reasons.
+
+        Or more reasons. Take a look at [lithe](http://lithe.mief.nl)
+    ~~~~
+
+    Now add the markdown filter on your content variable:
+
+    ~~~~.jinja2
+    <h1>{{ data.title }}</h1>
+    <em>{{ data.author }}</em>
+
+    {{ data.body | markdown }}
+    ~~~~
+
+    lithe usages the excellent [Markdown module](https://pythonhosted.org/Markdown/)
+        
+    At default lithe has enabled the following [Markdown extensions](https://pythonhosted.org/Markdown/extensions)
+
+        markdown.extensions.extra
+        markdown.extensions.abbr
+        markdown.extensions.attr_list
+        markdown.extensions.def_list
+        markdown.extensions.fenced_code
+        markdown.extensions.footnotes
+        markdown.extensions.tables
+        markdown.extensions.smart_strong
+        markdown.extensions.codehilite
+        markdown.extensions.meta
+        markdown.extensions.nl2br
+        markdown.extensions.sane_lists
+        markdown.extensions.smarty
+        markdown.extensions.toc
+    
+    # Deployment, lithe in production #
+
+    <div class="bs-callout bs-callout-danger">
+        <p><strong>The lithe server / tool on its own should NEVER been used in ANY production environment. It is not secure and is not build for this. ALWAYS build your site by using the build script as described!</strong></p>
+    </div>
+
+    Now we have the notice out of the way....
+
+    lithe comes with a handy build script to create static files / content which you can ssh/sftp to your server.
+
+    The way this works is that the build script will analyze all available links (also the re-usable templates), collect the static folder and put all of this inside the created 'build' folder.
+
+    From your project folder (where lithe.sh) also exists. Run:
+
+    ~~~~.bash
+    python lithe/build.py
+    ~~~~
+
+    <div class="bs-callout bs-callout-info">
+        <p>lithe should be running in order to run the build script</p>
+    </div>
+
+    All contents created in the build folder should be suitable for copying to your web server.
+
+    By default, lithe creates a folder structure by reusing the underscore templates. So lets say we have the following files:
+
+    ~~~~.bash
+    web/
+        content/
+            post/
+                hello.yml
+    ~~~~
+
+    ~~~~.bash
+    web/
+        templates/
+            _post.html
+    ~~~~
+
+    The final build file is created at:
+
+    ~~~~.bash
+    build/
+        post/
+            hello.html
+    ~~~~
+
+    If you prefer, for some reason, to flatten this structure just pass __-i__ to the build script.
+
+    ~~~~.bash
+    python lithe/build.py -i
+    ~~~~
+    
+    All subfolders are ignored and all html files will be in the root folder.
+
+    <div class="bs-callout bs-callout-danger">
+        <p>At the time of writing lithe does not check for duplicate file names and so if you have similar file names content might be overwritten.
+        </p>
+    </div>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>lithe | Mief</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+
+
+      <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-17586299-1']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+
+        </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>lithe <small>build by mief.nl</small></h1>
+            </div>
+        </div>
+
+
+        {% block content %}{% endblock %}
+
+
+        <hr>
+        <footer>
+           <a href="http://mief.nl">mief.nl</a> |  <a href="http://lithe.mief.nl">build with lithe</a>
+        </footer>
+    </div>    
+
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+
+    <script>
+        $(function(){
+            var tocHeight = 0,
+                snapPoint = 0,
+                $toc = $('div.toc'),
+                $tocFixedContainer = $('div.toc-fixed'),
+                isFixed = false
+            ;
+                
+            tocHeight = parseInt($toc.css('height'));
+            snapPoint = 30;
+
+            $toc.clone().appendTo($tocFixedContainer);
+
+            $(window).scroll(function (){
+                if ($('body').scrollTop() >= 1) {
+                    if (isFixed == false) {
+                        isFixed = true;
+                        $toc.hide();
+                        $tocFixedContainer.show();
+                    }
+                } else {
+                    if (isFixed == true) {
+                        isFixed = false;
+                        $toc.show();
+                        $tocFixedContainer.hide();
+                    }
+                }
+
+            });
+        });
+    </script>
+</body>
+</html>

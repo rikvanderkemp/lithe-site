@@ -1,0 +1,125 @@
+$base-padding: 20px;
+
+
+/**
+ * TOC
+ *      1.0 -- Structure
+ *      2.0 -- Bootstrap addons
+ */
+
+
+//-- 1.0 Structure
+#wrapper {
+    padding-left: 390px;
+}
+
+#sidebar-wrapper {
+  margin-left: -350px;
+  left: 350px;
+  width: 350px;
+  background: #fff;
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+#content-wrapper {
+    width: 100%;
+    padding-top: $base-padding;
+}
+
+
+//-- sidebar-wrapper
+#sidebar-wrapper {
+    
+    #sidebar {
+        
+        div.sidebar__logo {
+            width: 174px;
+            margin: 0 auto;
+            padding-top: $base-padding;
+        }
+
+        div.sidebar__navigation {
+            width: 200px;
+            margin: 0 auto;
+            text-align: center;
+            margin-top: $base-padding + 40px;
+            ul {
+                @include reset-list();
+
+                a {
+                    color: #555;    
+                }
+            }
+        }
+    }
+}
+
+footer {
+  margin-bottom: 80px;
+}
+
+//-- Boxes
+
+div.box {
+    &.overview {
+        // outline: 1px solid green;
+        width: 300px;
+        margin-bottom: $base-padding;
+
+        &.overview__medium {
+        }
+
+        &.overview__large {
+        }
+    }
+}
+
+//-- Toc
+div.toc-fixed {
+  display: none;
+}
+
+div.toc {
+  a {
+    small {
+      display: none;
+    }
+  }
+}
+
+
+//-- 2.0 Bootstrap addons
+
+/* Base styles (regardless of theme) */
+.bs-callout {
+  margin: 20px 0;
+  padding: 15px 30px 15px 15px;
+  border-left: 5px solid #eee;
+}
+.bs-callout h4 {
+  margin-top: 0;
+}
+.bs-callout p:last-child {
+  margin-bottom: 0;
+}
+.bs-callout code,
+.bs-callout .highlight {
+  background-color: #fff;
+}
+
+/* Themes for different contexts */
+.bs-callout-danger {
+  background-color: #fcf2f2;
+  border-color: #dFb5b4;
+}
+.bs-callout-warning {
+  background-color: #fefbed;
+  border-color: #f1e7bc;
+}
+.bs-callout-info {
+  background-color: #f0f7fd;
+  border-color: #d0e3f0;
+}

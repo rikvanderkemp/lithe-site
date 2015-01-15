@@ -1,0 +1,17 @@
+// @include font-face(LatoRegular, '/static/fonts/lato/lato-regular-webfont');
+// @include font-face(LatoLight, '/static/fonts/lato/Lato-Light');
+// @include font-face(LatoHeavy, '/static/fonts/lato/lato-heavy-webfont');
+
+body {
+    font-size: 14px;
+    font-family: Arial;    
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    // font-family: LatoHeavy;
+}

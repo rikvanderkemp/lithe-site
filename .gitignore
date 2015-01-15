@@ -1,0 +1,6 @@
+.DS_Store
+build/
+lithe
+lithe.sh
+web/node_modules/
+web/static/css/*
