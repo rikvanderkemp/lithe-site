@@ -30,7 +30,7 @@ body: |
     Although it all sounds basic lithe supports some awesome features.
 
     * HTML markup can be done using the powerfull [Jinja](http://jinja.pocoo.org) templating engine. There is no need for any configuration this is supported out-of-the-box.
-    * You can build [re-usable templates](/page/tutorial.html#re-usable-templates) and feed data via YAML files. This allows you to quickly add pages to your site which use the same templates. This is how this website is build. Checkout the source at [github](https://github.com/rikvanderkemp/lithe-site)
+    * You can build [reusable templates](/page/tutorial.html#reusable-templates) and feed data via YAML files. This allows you to quickly add pages to your site which use the same templates. This is how this website is build. Checkout the source at [github](https://github.com/rikvanderkemp/lithe-site)
     * Your [data files](/page/tutorial.html#data-files) can use the widely acclaimed [Markdown](/page/tutorial.html#markdown) language NO html knowledge needed in your content.
 
     [^1]: According to [Merriam Webster](http://www.merriam-webster.com/dictionary/lithe)

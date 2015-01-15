@@ -97,11 +97,11 @@ body: |
     <script src="/static/js/my.js"></script>
     ~~~~
 
-    # Re-usable templates #
+    # Reusable templates #
 
     With lithe you can build simple static websites. Even though these websites are simple, chances are that you want to re-use templates. Think of blog posts or news pages. 
 
-    Building re-usable templates you can use subfolders to indicate templates and use data files for input. Lets examine these.
+    Building reusable templates you can use subfolders to indicate templates and use data files for input. Lets examine these.
 
 
     ## Underscore template ##
@@ -251,7 +251,7 @@ body: |
 
     lithe comes with a handy build script to create static files / content which you can ssh/sftp to your server.
 
-    The way this works is that the build script will analyze all available links (also the re-usable templates), collect the static folder and put all of this inside the created 'build' folder.
+    The way this works is that the build script will analyze all available links (also the reusable templates), collect the static folder and put all of this inside the created 'build' folder.
 
     From your project folder (where lithe.sh) also exists. Run:
 
