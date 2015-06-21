@@ -1,12 +1,11 @@
 //-- Third party helpers
-@import 'bootstrap';
-@import 'mixins';
+@import 'lib/mixins';
 
 //-- Site specifics
-@import 'typography';
+@import 'lib/typography';
 
 //-- Code coloring
-@import 'pygments/monokai';
+@import 'lib/pygments/monokai';
 
 div.codehilite {
     pre {
@@ -15,14 +14,14 @@ div.codehilite {
     }
 }
 
+
 $break-phone: 320px;
 $break-tablet: 1024px;
 
-
 @media screen and (min-width: 0) {
-    @import 'phone';
+    @import 'lib/phone';
 }
 
 @media screen and (min-width: $break-tablet) {
-    @import 'tablet';
+    @import 'lib/tablet';
 }

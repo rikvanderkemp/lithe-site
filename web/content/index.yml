@@ -14,23 +14,65 @@ menu:
         description: |
             Learn lithe by studying the example files.
         link: '/page/example-files-explained.html'
-body: |
-    # What is lithe? #
 
-    > moving in an easy and graceful way [^1]
+why:
+    -
+        title: Fast
+        icon: rocket
+        content: |     
+            Lithe is small, build with Python and super fast. It is build with <i class="fa fa-heart"></i> for the web and technology.
+    -
+        title: Powerfull
+        icon: bolt
+        content: |        
+            Despite the small size of lithe, it comes with very powerfull packages pre-installed and enabled such as Jinja2 and Markdown.
+    - 
+        title: Flexible
+        icon: code
+        content: |
+            Lithe does not ship with default templates or strict requirements for development. It is a blank canvas at default.
+features:
+    - |
+        Integrated <a href="http://jinja.pocoo.org">Jinja2</a> template engine
+    - |
+        <a href="/page/tutorial.html#reusable-templates">Reusable templates</a>, build once use always
+    - |
+        <a href="/page/tutorial.html#data-files">Data files</a> using YAML, no databases needed
+    - |
+        Default <a href="/page/tutorial.html#markdown">Markdown</a> support for content
 
-    Simply put, a super fast and flexible framework for rapid static HTML site development. 
+get_started:
+    -
+        title: Get lithe
+        content: |
+            In a project directory get lithe
+            ~~~~~.bash
+            $ git clone https://github.com/rikvanderkemp/lithe
+            ~~~~~
+            
+            *Yes, we assume you have Python 3 installed on your system and know how to setup a virtual environment. If not, we suggest reading our [beginners guide](/page/beginners-guide.html)*
+    -
+        title: Get requirements
+        content: |
+            Get all requirements to run lithe
+            ~~~~.bash
+            $ pip install -r lithe/requirements.txt
+            ~~~~
+    -
+        title: Run setup
+        content: | 
+            Run the setup script and follow its instructions
+            ~~~~.bash
+            $ python lithe/setup.py
+            ~~~~
 
-    It is not always necessary to conjure up a full fledged CMS system like Wordpress or Drupal just to get the message out. You end up with a lot of excessive stuff you most likely are not going to use.
+    -
+        title: Server up
+        content: |
+            When the setup script is done you can run the lithe server using
+            
+            ~~~~.bash
+            $ ./lithe.sh start
+            ~~~~
 
-    Personally I always find myself in a situation were I just need to quickly build a website or prototype something, and it is at that point were it would be nice that what I've build is easy to deploy to a web server.
-
-    Lithe provides a way to create simple static websites that are easy to build, flexible and easy to deploy. 
-
-    Although it all sounds basic lithe supports some awesome features.
-
-    * HTML markup can be done using the powerful [Jinja](http://jinja.pocoo.org) templating engine. There is no need for any configuration this is supported out-of-the-box.
-    * You can build [reusable templates](/page/tutorial.html#reusable-templates) and feed data via YAML files. This allows you to quickly add pages to your site which use the same templates. This is how this website is build. Checkout the source at [github](https://github.com/rikvanderkemp/lithe-site)
-    * Your [data files](/page/tutorial.html#data-files) can use the widely acclaimed [Markdown](/page/tutorial.html#markdown) language NO html knowledge needed in your content.
-
-    [^1]: According to [Merriam Webster](http://www.merriam-webster.com/dictionary/lithe)
+            Now visit [http://localhost:8000](localhost:8000) 

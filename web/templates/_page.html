@@ -1,20 +1,29 @@
 {% extends 'includes/layout.html' %}
 
 {% block home %}
- - <a href="/">home</a>
+ <a href="/">
+    <span class="logo-title">lithe</span><span> | {{ data.title }}</span>
+ </a>
 {% endblock %}
 
+{% block nav_items %}
+    <li class="active nav-item sr-only"><a class="" href="index.html#promo">Home</a></li>
+    <li class="nav-item"><a href="/index.html#about">About</a></li>
+    <li class="nav-item"><a href="/index.html#features">Features</a></li>
+    <li class="nav-item"><a href="/index.html#get-started">Get started</a></li>
+    <li class="nav-item last active"><a href="/page/tutorial.html">Tutorial</a></li>                        
+{% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-md-3">
-            <div class="toc-fixed">
-                <h1>lithe <small><a href="/">home</a></small></h1>
-            </div>
+<section class="docs section">    
+    <div class="container">
+        <div class="docs-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    {{ data.body | markdown }}
+                </div>
+            </div>  
         </div>
-
-        <div class="col-md-6">
-            {{ data.body | markdown }}
-        </div>
-    </div>   
+    </div>
+</section>
 {% endblock %}

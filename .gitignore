@@ -5,3 +5,6 @@ lithe.sh
 web/node_modules/
 web/static/css/*
 run.lock
+node_modules/
+.idea/
+*.swp
